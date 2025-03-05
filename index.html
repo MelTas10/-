@@ -1,0 +1,34 @@
+index.html:
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MELTAS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loader">
+        <div class="star"></div>
+    </div>
+
+    <div id="main-content" class="hidden">
+        <h1>MELTAS</h1>
+        <button id="start-btn">Начать</button>
+        
+        <div id="info" class="hidden">
+            <section class="meltas-info">
+                <h2>База MELTAS</h2>
+                <p>Информация о базе MELTAS...</p>
+            </section>
+            
+            <section id="game-section">
+                <canvas id="gameCanvas"></canvas>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
