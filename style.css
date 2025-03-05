@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+#loader {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+}
+
+.star {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none;
+}
+
+#main-content {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 4em;
+    margin: 20% 0;
+}
+
+#start-btn {
+    padding: 15px 40px;
+    font-size: 1.5em;
+    background: #fff;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#start-btn:hover {
+    transform: scale(1.1);
+}
+
+.meltas-info {
+    margin: 50px 0;
+    padding: 20px;
+}
+
+#gameCanvas {
+    border: 2px solid #fff;
+    margin: 20px auto;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3em;
+    }
+}
