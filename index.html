@@ -3,30 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MELTAS</title>
-    <link rel="stylesheet" href="style.css">
+    <title>DC | Скам база</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #1a1a1a, #2d2d2d, #404040);
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .dc-logo {
+            font-size: 72px;
+            font-weight: bold;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .main-content {
+            opacity: 0;
+            animation: contentFadeIn 2s ease-in forwards;
+            animation-delay: 2s;
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 48px;
+            text-align: center;
+            margin: 40px 0;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .questions {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .panel {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        .panel-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .panel-content {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .panel img {
+            max-width: 100%;
+            border: 2px solid white;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(255,255,255,0.5);
+            margin: 15px 0;
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes contentFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-    <div id="loader">
-        <div class="star"></div>
+    <div class="loading-screen">
+        <div class="dc-logo">DC</div>
     </div>
 
-    <div id="main-content" class="hidden">
-        <h1>MELTAS</h1>
-        <button id="start-btn">Начать</button>
+    <div class="main-content">
+        <div class="particles" id="particles"></div>
         
-        <div id="info" class="hidden">
-            <section class="meltas-info">
-                <h2>База MELTAS</h2>
-                <p>Информация о базе MELTAS...</p>
-            </section>
-            
-            <section id="game-section">
-                <canvas id="gameCanvas"></canvas>
-            </section>
+        <h1 class="title">DC | Скам база</h1>
+        
+        <div class="questions">
+            <p>Как слить скаммера?</p>
+            <p>и как именно скамят?</p>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">Как пользователи примерно скамят наивных людей</div>
+            <div class="panel-content">
+                <p>Как пользователи примерно скамят наивных людей которые легко к сожалению попадаються на таких скаммеров</p>
+                <img src="https://ibb.co/LzcstZYZ" alt="Scam example">
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">Как слить скаммера</div>
+            <div class="panel-content">
+                <p>Как пользователи примерно скамят наивных людей которые легко к сожалению попадаються на таких скаммеров</p>
+                <img src="https://ibb.co/LzcstZYZ" alt="Scam example">
+            </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Анимация загрузки
+        window.onload = function() {
+            setTimeout(() => {
+                document.querySelector('.loading-screen').style.display = 'none';
+            }, 2000);
+        }
+
+        // Создание частиц
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = '2px';
+            particle.style.height = '2px';
+            particle.style.background = 'white';
+            particle.style.borderRadius = '50%';
+            
+            const title = document.querySelector('.title');
+            const rect = title.getBoundingClientRect();
+            
+            particle.style.left = rect.left + Math.random() * rect.width + 'px';
+            particle.style.top = rect.top + 'px';
+            
+            document.querySelector('.particles').appendChild(particle);
+            
+            let angle = Math.random() * Math.PI * 2;
+            let velocity = 1 + Math.random() * 2;
+            let lifetime = 0;
+            
+            function animate() {
+                lifetime += 1;
+                particle.style.left = parseFloat(particle.style.left) + Math.cos(angle) * velocity + 'px';
+                particle.style.top = parseFloat(particle.style.top) + Math.sin(angle) * velocity + 'px';
+                particle.style.opacity = 1 - lifetime/100;
+                
+                if(lifetime < 100) {
+                    requestAnimationFrame(animate);
+                } else {
+                    particle.remove();
+                }
+            }
+            
+            animate();
+        }
+
+        setInterval(createParticle, 50);
+    </script>
 </body>
 </html>
