@@ -5,13 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DC Loading</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             margin: 0;
             padding: 0;
             background: linear-gradient(45deg, #2c3e50, #34495e);
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
         }
 
         .loader-container {
@@ -34,51 +42,91 @@
 
         .text {
             color: #fff;
-            font-size: 48px;
-            letter-spacing: 2px;
+            font-size: 72px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: 4px;
             position: relative;
             display: inline-block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
         }
 
         .text::after {
             content: '';
             position: absolute;
             left: 0;
-            bottom: -10px;
+            bottom: -15px;
             width: 100%;
-            height: 4px;
-            background: #fff;
+            height: 6px;
+            background: linear-gradient(90deg, #fff, #64ffda);
             transform: scaleX(0);
             animation: load 1.5s ease-in-out infinite;
+            border-radius: 3px;
         }
 
         .main-content {
             display: none;
             animation: fadeIn 1s forwards;
             animation-delay: 3s;
+            padding-top: 20px;
         }
 
         .panel {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px;
+            border-radius: 15px;
+            padding: 25px;
             color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .panel h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #64ffda;
+        }
+
+        .panel p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .panel-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
 
         .panels-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         @keyframes load {
@@ -101,12 +149,8 @@
         }
 
         @keyframes fadeOut {
-            0% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
+            0% { opacity: 1; }
+            90% { opacity: 1; }
             100% {
                 opacity: 0;
                 visibility: hidden;
@@ -123,6 +167,46 @@
                 display: block;
             }
         }
+
+        /* Медиа-запросы для адаптивности */
+        @media (max-width: 768px) {
+            .panels-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                padding: 15px;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+
+            .panel h2 {
+                font-size: 20px;
+            }
+
+            .panel p {
+                font-size: 14px;
+            }
+
+            .text {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .panels-grid {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+
+            .panel {
+                padding: 15px;
+            }
+
+            .text {
+                font-size: 36px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -136,20 +220,24 @@
         <div class="container">
             <div class="panels-grid">
                 <div class="panel">
-                    <h2>Panel 1</h2>
-                    <p>Content for panel 1</p>
+                    <img src="image1.jpg" alt="Panel 1" class="panel-image">
+                    <h2>Creative Design</h2>
+                    <p>Innovative solutions for modern web design challenges.</p>
                 </div>
                 <div class="panel">
-                    <h2>Panel 2</h2>
-                    <p>Content for panel 2</p>
+                    <img src="image2.jpg" alt="Panel 2" class="panel-image">
+                    <h2>Development</h2>
+                    <p>Building robust and scalable web applications.</p>
                 </div>
                 <div class="panel">
-                    <h2>Panel 3</h2>
-                    <p>Content for panel 3</p>
+                    <img src="image3.jpg" alt="Panel 3" class="panel-image">
+                    <h2>UI/UX Design</h2>
+                    <p>Creating intuitive and engaging user experiences.</p>
                 </div>
                 <div class="panel">
-                    <h2>Panel 4</h2>
-                    <p>Content for panel 4</p>
+                    <img src="image4.jpg" alt="Panel 4" class="panel-image">
+                    <h2>Digital Marketing</h2>
+                    <p>Strategies that drive growth and engagement.</p>
                 </div>
             </div>
         </div>
