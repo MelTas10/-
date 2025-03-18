@@ -12,6 +12,8 @@
             background: linear-gradient(45deg, #1a1a1a, #2d2d2d, #404040);
             font-family: 'Montserrat', Arial, sans-serif;
             color: white;
+            min-height: 100vh;
+            position: relative;
         }
 
         .loading-screen {
@@ -27,11 +29,34 @@
             z-index: 1000;
         }
 
+        .loader {
+            width: 150px;
+            height: 150px;
+            border: 5px solid #fff;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
         .dc-logo {
+            position: absolute;
             font-size: 72px;
             font-weight: 900;
             font-family: 'Poppins', sans-serif;
-            animation: fadeIn 2s ease-in;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         .main-content {
@@ -39,6 +64,7 @@
             animation: contentFadeIn 2s ease-in forwards;
             animation-delay: 2s;
             padding: 20px;
+            padding-bottom: 60px;
         }
 
         .title {
@@ -79,7 +105,8 @@
         }
 
         .panel img {
-            max-width: 100%;
+            width: 100%;
+            height: auto;
             border: 2px solid white;
             border-radius: 5px;
             box-shadow: 0 0 15px rgba(255,255,255,0.5);
@@ -92,6 +119,17 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            background: rgba(0,0,0,0.5);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
         }
 
         @keyframes fadeIn {
@@ -107,6 +145,7 @@
 </head>
 <body>
     <div class="loading-screen">
+        <div class="loader"></div>
         <div class="dc-logo">DC</div>
     </div>
 
@@ -137,15 +176,17 @@
         </div>
     </div>
 
+    <div class="footer">
+        2025 DC Copyright Reserved
+    </div>
+
     <script>
-        // Анимация загрузки
         window.onload = function() {
             setTimeout(() => {
                 document.querySelector('.loading-screen').style.display = 'none';
             }, 2000);
         }
 
-        // Создание частиц
         function createParticle() {
             const particle = document.createElement('div');
             particle.style.position = 'absolute';
