@@ -49,10 +49,73 @@
             bottom: 0;
             width: 100%;
             background-color: black;
+            z-index: 999;
         }
 
         #mainContent {
             display: none;
+            padding-bottom: 50px; /* Добавляем отступ для copyright */
+        }
+
+        /* Стили для основного контента */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            max-width: 200px;
+        }
+
+        .nav {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        .nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav li {
+            margin: 0 15px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .main-section {
+            padding: 40px 0;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -63,7 +126,35 @@
     </div>
 
     <div id="mainContent" class="content">
-        <!-- Ваш основной контент сайта -->
+        <header class="header">
+            <img src="path-to-your-logo.png" alt="Logo" class="logo">
+        </header>
+
+        <nav class="nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-section">
+            <div class="container">
+                <h1>Welcome to Our Website</h1>
+                <p>This is the main content of your website.</p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <div class="copyright">
