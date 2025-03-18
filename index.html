@@ -78,41 +78,6 @@
             animation: subtextFadeIn 1.5s ease 0.5s forwards;
         }
 
-        .loading-image {
-            width: 200px;
-            height: 200px;
-            display: none;
-            opacity: 0;
-            transition: all 1s ease;
-            border-radius: 50%;
-            box-shadow: 0 0 40px rgba(255,255,255,0.4);
-            transform: scale(0.8);
-            animation: imageFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes textPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes imageFloat {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0); }
-        }
-
-        @keyframes subtextFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .loading-progress {
             width: 200px;
             height: 3px;
@@ -133,8 +98,16 @@
             animation: progress 2s ease-in-out forwards;
         }
 
-        @keyframes progress {
-            to { width: 100%; }
+        .loading-image {
+            width: 200px;
+            height: 200px;
+            display: none;
+            opacity: 0;
+            transition: all 1s ease;
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(255,255,255,0.4);
+            transform: scale(0.8);
+            animation: imageFloat 3s ease-in-out infinite;
         }
 
         .main-content {
@@ -149,7 +122,134 @@
             z-index: 1;
         }
 
-        /* Остальные стили остаются те же */
+        .title {
+            font-size: 52px;
+            text-align: center;
+            margin: 40px 0;
+            font-weight: 900;
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 0 0 15px rgba(255,255,255,0.5);
+            background: linear-gradient(45deg, #fff, #a5a5a5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: titleReveal 1.5s ease forwards;
+        }
+
+        .questions {
+            text-align: center;
+            font-size: 26px;
+            margin: 30px 0;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        .panel {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.15);
+        }
+
+        .panel-title {
+            font-size: 28px;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.4);
+        }
+
+        .panel-content {
+            font-size: 18px;
+            line-height: 1.8;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .panel img {
+            width: 50%;
+            height: auto;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(255,255,255,0.3);
+            margin: 20px auto;
+            display: block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .panel img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 35px rgba(255,255,255,0.4);
+        }
+
+        .tips {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            border-left: 4px solid #fff;
+        }
+
+        .tips h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .tips ul {
+            margin: 0;
+            padding-left: 25px;
+        }
+
+        .tips li {
+            margin: 12px 0;
+            line-height: 1.6;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: particleFadeIn 0.5s ease forwards;
+        }
+
+        @keyframes textPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes imageFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes progress {
+            to { width: 100%; }
+        }
 
         @keyframes textFadeIn {
             from {
@@ -162,23 +262,18 @@
             }
         }
 
-        /* Добавляем новые анимации для элементов */
-        .panel {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        @keyframes subtextFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .panel:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255,255,255,0.15);
-        }
-
-        .title {
-            animation: titleReveal 1.5s ease forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        @keyframes titleReveal {
+        @keyframes contentFadeIn {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -189,10 +284,13 @@
             }
         }
 
-        /* Добавляем стили для плавного появления частиц */
-        .particle {
-            opacity: 0;
-            animation: particleFadeIn 0.5s ease forwards;
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 15px rgba(255,255,255,0.5);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(255,255,255,0.8);
+            }
         }
 
         @keyframes particleFadeIn {
@@ -214,7 +312,50 @@
         </div>
     </div>
 
-    <!-- Остальной HTML код остается тем же -->
+    <div class="main-content">
+        <div class="particles" id="particles"></div>
+        
+        <h1 class="title">DC | Скам база</h1>
+        
+        <div class="questions">
+            <p>Как слить скаммера?</p>
+            <p>и как именно скамят?</p>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">Как пользователи примерно скамят наивных людей</div>
+            <div class="panel-content">
+                <p>Как пользователи примерно скамят наивных людей которые легко к сожалению попадаються на таких скаммеров</p>
+                <img src="https://i.ibb.co/gMfcTRmR/2.jpg" alt="Scam example">
+                <div class="tips">
+                    <h3>Советы по безопасности:</h3>
+                    <ul>
+                        <li>Никогда не переходите по подозрительным ссылкам</li>
+                        <li>Не доверяйте сообщениям о внезапных выигрышах</li>
+                        <li>Проверяйте репутацию продавцов перед сделкой</li>
+                        <li>Не отправляйте личные данные незнакомым людям</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">Как слить скаммера</div>
+            <div class="panel-content">
+                <p>Методы противодействия мошенникам и защита от скама</p>
+                <img src="https://i.ibb.co/qLNHG6T6/image-2025-03-18-04-28-43.png" alt="Scam example">
+                <div class="tips">
+                    <h3>Как разоблачить скаммера:</h3>
+                    <ul>
+                        <li>Собирайте доказательства мошенничества</li>
+                        <li>Сообщайте о подозрительной активности администрации</li>
+                        <li>Предупреждайте других пользователей</li>
+                        <li>Используйте только проверенные платежные методы</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         const loadingText = document.querySelector('.loading-text');
@@ -238,7 +379,6 @@
             }, 100);
         }, 1500);
 
-        // Улучшенная функция создания частиц
         function createParticle() {
             const particle = document.createElement('div');
             particle.classList.add('particle');
