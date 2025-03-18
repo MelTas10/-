@@ -27,7 +27,7 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            transition: opacity 0.5s ease-out;
+            transition: opacity 0.8s ease-out;
         }
 
         .loading-content {
@@ -39,7 +39,7 @@
             font-size: 24px;
             margin-bottom: 20px;
             opacity: 1;
-            transition: opacity 0.5s ease-out;
+            transition: opacity 0.8s ease-out;
             color: white;
             font-family: 'Poppins', sans-serif;
         }
@@ -49,7 +49,7 @@
             height: 180px;
             display: none;
             opacity: 0;
-            transition: opacity 0.5s ease-in;
+            transition: opacity 0.8s ease-in;
             border-radius: 50%;
             box-shadow: 0 0 20px rgba(255,255,255,0.3);
         }
@@ -60,6 +60,8 @@
             animation-delay: 2s;
             padding: 20px;
             padding-bottom: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .title {
@@ -100,31 +102,39 @@
         }
 
         .panel img {
-            width: 100%;
+            width: 50%;
             height: auto;
             border: 2px solid white;
             border-radius: 5px;
             box-shadow: 0 0 15px rgba(255,255,255,0.5);
-            margin: 15px 0;
+            margin: 15px auto;
+            display: block;
+        }
+
+        .tips {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 5px;
+        }
+
+        .tips ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .tips li {
+            margin: 10px 0;
         }
 
         .particles {
-            position: absolute;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
             z-index: 0;
-        }
-
-        .footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-            padding: 15px;
-            background: rgba(0,0,0,0.5);
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
         }
 
         @keyframes fadeIn {
@@ -133,14 +143,22 @@
         }
 
         @keyframes contentFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
+        }
+
+        .particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            transition: all 0.8s ease;
         }
     </style>
 </head>
@@ -167,20 +185,34 @@
             <div class="panel-content">
                 <p>Как пользователи примерно скамят наивных людей которые легко к сожалению попадаються на таких скаммеров</p>
                 <img src="https://i.ibb.co/gMfcTRmR/2.jpg" alt="Scam example">
+                <div class="tips">
+                    <h3>Советы по безопасности:</h3>
+                    <ul>
+                        <li>Никогда не переходите по подозрительным ссылкам</li>
+                        <li>Не доверяйте сообщениям о внезапных выигрышах</li>
+                        <li>Проверяйте репутацию продавцов перед сделкой</li>
+                        <li>Не отправляйте личные данные незнакомым людям</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <div class="panel">
             <div class="panel-title">Как слить скаммера</div>
             <div class="panel-content">
-                <p>Как пользователи примерно скамят наивных людей которые легко к сожалению попадаються на таких скаммеров</p>
+                <p>Методы противодействия мошенникам и защита от скама</p>
                 <img src="https://i.ibb.co/qLNHG6T6/image-2025-03-18-04-28-43.png" alt="Scam example">
+                <div class="tips">
+                    <h3>Как разоблачить скаммера:</h3>
+                    <ul>
+                        <li>Собирайте доказательства мошенничества</li>
+                        <li>Сообщайте о подозрительной активности администрации</li>
+                        <li>Предупреждайте других пользователей</li>
+                        <li>Используйте только проверенные платежные методы</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="footer">
-        2025 DC Copyright Reserved
     </div>
 
     <script>
@@ -212,46 +244,45 @@
                         loadingScreen.style.opacity = '0';
                         setTimeout(() => {
                             loadingScreen.style.display = 'none';
-                        }, 500);
-                    }, 1000);
-                }, 50);
-            }, 500);
+                        }, 800);
+                    }, 1200);
+                }, 100);
+            }, 800);
         }, 3000);
 
         function createParticle() {
             const particle = document.createElement('div');
-            particle.style.position = 'absolute';
-            particle.style.width = '2px';
-            particle.style.height = '2px';
-            particle.style.background = 'white';
-            particle.style.borderRadius = '50%';
+            particle.classList.add('particle');
             
-            const title = document.querySelector('.title');
-            const rect = title.getBoundingClientRect();
+            const size = Math.random() * 3 + 1;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
             
-            particle.style.left = rect.left + Math.random() * rect.width + 'px';
-            particle.style.top = rect.top + 'px';
+            const startX = Math.random() * window.innerWidth;
+            const startY = Math.random() * window.innerHeight;
+            
+            particle.style.left = `${startX}px`;
+            particle.style.top = `${startY}px`;
             
             document.querySelector('.particles').appendChild(particle);
             
-            let angle = Math.random() * Math.PI * 2;
-            let velocity = 1 + Math.random() * 2;
-            let lifetime = 0;
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = Math.random() * 1 + 0.5;
+            const opacity = Math.random() * 0.5 + 0.3;
             
-            function animate() {
-                lifetime += 1;
-                particle.style.left = parseFloat(particle.style.left) + Math.cos(angle) * velocity + 'px';
-                particle.style.top = parseFloat(particle.style.top) + Math.sin(angle) * velocity + 'px';
-                particle.style.opacity = 1 - lifetime/100;
+            particle.style.opacity = opacity;
+            
+            setTimeout(() => {
+                const moveX = Math.cos(angle) * 100;
+                const moveY = Math.sin(angle) * 100;
                 
-                if(lifetime < 100) {
-                    requestAnimationFrame(animate);
-                } else {
+                particle.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                particle.style.opacity = '0';
+                
+                setTimeout(() => {
                     particle.remove();
-                }
-            }
-            
-            animate();
+                }, 800);
+            }, 50);
         }
 
         setInterval(createParticle, 50);
